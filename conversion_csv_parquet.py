@@ -1,12 +1,5 @@
-import pandas as pd
 import os
-
-# Verificar la importación de fsspec
-try:
-    import fsspec
-    print("fsspec importado correctamente")
-except ImportError as e:
-    print(f"Error al importar fsspec: {e}")
+import pandas as pd
 
 def codificaciones(archivo_path):
     codif = ['utf-8', 'latin1', 'iso-8859-1', 'cp1252']
@@ -18,9 +11,11 @@ def codificaciones(archivo_path):
             continue
     raise UnicodeDecodeError(f'No se pudo leer el archivo {archivo_path} con las codificaciones probadas.')
 
-archivos_csv = ['conjunto_de_datos_enr2023.csv']  # Lista de archivos CSV
-ruta = 'C://Users//najer//Downloads//conjunto_de_datos_enr2023_csv//conjunto_de_datos'
+ruta = 'E://files_pandas//datos_abiertos//sinac'
 errores = []
+
+# Listar todos los archivos CSV en la ruta
+archivos_csv = [f for f in os.listdir(ruta) if f.endswith('.csv')]
 
 for archivo_csv in archivos_csv:
     try:
